@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:19:09 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 21:06:28 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:48:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*dine(void	*philo_ptr)
 	unsigned long	i;
 
 	philo = (t_philo *)philo_ptr;
-	if (philo->id % 2 == 1)
+	if (philo->id % 2 == 0)
 		usleep(1000);
 	if (philo->args->nb_philo == 1)
 		return (dine_alone(philo));

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 21:06:43 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 21:06:45 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:10:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static t_bool	are_all_done(t_args *args, t_philo **philos)
 		if (!philos[i]->is_done)
 			return (FALSE);
 	args->is_over = TRUE;
+	print_final_msg(philos[0], FINAL_FULL, ESC_BOLD_GREEN);
 	return (TRUE);
 }
 
@@ -58,6 +59,7 @@ static t_bool	is_any_dead(t_args *args, t_philo **philos)
 		{
 			philos[i]->args->is_over = TRUE;
 			print_log(philos[i], "has died", ESC_BOLD_RED);
+			print_final_msg(philos[i], FINAL_DEAD, ESC_BOLD_RED);
 			return (TRUE);
 		}
 	}

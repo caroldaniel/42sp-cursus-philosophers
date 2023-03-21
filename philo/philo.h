@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:19:00 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 22:42:45 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:11:06 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define ERR_NOPHIL	"Philo Error: number of philosophers must be one or greater"
 # define ERR_NOMEAL	"Philo Error: number of meals must be one or greater"
 # define ERR_NOTIME	"Philo Error: all timestamps must be positive and non-nulls"
+
+// Final Messages
+# define FINAL_DEAD	"What is the meaning of life?"
+# define FINAL_FULL	"They all ate so much they can't barely think now..."
 
 // Boolean Type Definition
 typedef enum e_bool
@@ -85,6 +89,7 @@ t_bool	create_philo(int i, t_table *table);
 void	*dine(void	*philo_ptr);
 void	*watch(void *table_ptr);
 void	print_log(t_philo *philo, char *log_msg, char *color);
+void	print_final_msg(t_philo *philo, char *log_msg, char *color);
 
 // Function pointer array
 void	ft_eat(t_philo *philo);

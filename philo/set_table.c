@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:48:54 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 22:31:41 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:07:46 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_table	*set_table(int argc, char **argv)
 	pthread_create(&table->watcher_id, NULL, watch, table);
 	if (!join_all_threads(table))
 		return (NULL);
-	printf("%s\nDINNER IS OVER\n\n", ESC_BOLD_WHITE);
 	return (table);
 }
 
@@ -74,12 +73,12 @@ static t_bool	get_philos(t_table *table)
 		return (FALSE);
 	i = -1;
 	while (++i < table->args.nb_philo)
-	{
 		if (!create_philo(i, table))
 			return (FALSE);
+	i = -1;
+	while (++i < table->args.nb_philo)
 		pthread_create(&table->philos[i]->thread_id, NULL, dine, \
 			table->philos[i]);
-	}
 	return (TRUE);
 }
 

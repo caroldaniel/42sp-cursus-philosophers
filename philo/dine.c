@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:19:09 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:04:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:06:28 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ static void	*dine_alone(t_philo *philo)
 	print_log(philo, "can't eat alone", ESC_BOLD_RED);
 	return (NULL);
 }
-

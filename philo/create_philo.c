@@ -6,14 +6,14 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 20:11:48 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:30:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:06:20 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 static void	set_ptrs(int i, t_philo *philo, t_table *table);
-static void set_fts(t_philo *philo);
+static void	set_fts(t_philo *philo);
 
 t_bool	create_philo(int i, t_table *table)
 {

@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 21:45:32 by cado-car          #+#    #+#              #
-#    Updated: 2023/03/20 20:18:35 by cado-car         ###   ########.fr        #
+#    Updated: 2023/03/20 22:21:07 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ fclean:			clean
 				rm -rf $(notdir $(NAME))
 				@printf "$(RE)Executable removed!$(RC)\n\n"
 
-leak:							
-				valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) 4 310 200 100
+leak:			all
+				valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) 4 310 100 100 5
 
 .PHONY:			all clean fclean re bonus rebonus
 

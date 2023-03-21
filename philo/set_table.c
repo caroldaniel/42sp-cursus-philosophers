@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:48:54 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:32:10 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:31:41 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_table	*set_table(int argc, char **argv)
 
 static t_bool	get_args(int argc, char **argv, t_table *table)
 {
+	table->args.start_time = gettimems();
 	table->args.nb_philo = ft_atoi(argv[1]);
 	table->args.time_die = ft_atoi(argv[2]);
 	table->args.time_eat = ft_atoi(argv[3]);

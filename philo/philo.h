@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:19:00 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:28:47 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:42:45 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ enum e_fork{
 // Struct to populate with arguments passed by user 
 typedef struct s_args
 {
+	long			start_time;	
 	int				nb_philo;
 	long			time_die;
 	long			time_eat;
@@ -57,7 +58,6 @@ typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread_id;
-	long			time_born;
 	int				meal_count;
 	long			last_meal;
 	t_bool			is_done;

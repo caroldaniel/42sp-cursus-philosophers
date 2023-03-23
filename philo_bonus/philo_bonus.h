@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:45:38 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 18:11:57 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:39:06 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	*clean_table(t_table **table);
 void	*dine(t_philo *philo);
 void	*reap(void *table_ptr);
 void	print_log(t_philo *philo, char *log_msg, char *color);
+void	print_log_death(t_philo *philo);
 void	print_final_msg(t_philo *philo, char *log_msg, char *color);
 
 // Function pointer array

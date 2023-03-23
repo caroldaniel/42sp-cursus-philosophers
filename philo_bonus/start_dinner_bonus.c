@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 19:06:50 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:43:51 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static t_bool	wait_all_philos(t_table *table)
 	}
 	if (!death && table->args.nb_philo != 1)
 		print_final_msg(table->philos[0], FINAL_FULL, ESC_BOLD_GREEN);
-	else if (death && table->args.nb_philo != 1)
-		print_final_msg(table->philos[0], FINAL_DEAD, ESC_BOLD_RED);
 	sem_post(table->args.death);
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:32:23 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 18:49:34 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:39:30 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	*check_life(void *philo_ptr)
 	if (!philo->is_done)
 	{
 		sem_post(philo->args->death);
-		print_log(philo, "has died", ESC_BOLD_RED);
+		print_log_death(philo);
 	}
 	return (NULL);	
 }

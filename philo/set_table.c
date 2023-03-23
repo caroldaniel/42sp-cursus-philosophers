@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:48:54 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 23:07:46 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/23 09:50:17 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static t_bool	get_args(int argc, char **argv, t_table *table);
 static t_bool	get_forks(t_table *table);
 static t_bool	get_philos(t_table *table);
-static t_bool	join_all_threads(t_table *table);
 
 t_table	*set_table(int argc, char **argv)
 {
@@ -29,9 +28,6 @@ t_table	*set_table(int argc, char **argv)
 	pthread_mutex_init(&table->print_zone, NULL);
 	if (!get_args(argc, argv, table) || !get_forks(table) || !get_philos(table))
 		return (clean_table(&table));
-	pthread_create(&table->watcher_id, NULL, watch, table);
-	if (!join_all_threads(table))
-		return (NULL);
 	return (table);
 }
 
@@ -75,22 +71,5 @@ static t_bool	get_philos(t_table *table)
 	while (++i < table->args.nb_philo)
 		if (!create_philo(i, table))
 			return (FALSE);
-	i = -1;
-	while (++i < table->args.nb_philo)
-		pthread_create(&table->philos[i]->thread_id, NULL, dine, \
-			table->philos[i]);
-	return (TRUE);
-}
-
-static t_bool	join_all_threads(t_table *table)
-{
-	int	i;
-
-	i = -1;
-	while (++i < table->args.nb_philo)
-		if (pthread_join(table->philos[i]->thread_id, NULL))
-			return (FALSE);
-	if (pthread_join(table->watcher_id, NULL))
-		return (FALSE);
 	return (TRUE);
 }

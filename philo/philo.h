@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:19:00 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 23:11:06 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:45:48 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,17 @@ typedef struct s_table
 	t_args			args;
 	pthread_mutex_t	*forks;
 	t_philo			**philos;
-	pthread_t		watcher_id;
+	pthread_t		reaper_id;
 }	t_table;
 
 // Program functions
 t_bool	check_args(int argc, char **argv);
 t_table	*set_table(int argc, char **argv);
-void	*clean_table(t_table **table);
 t_bool	create_philo(int i, t_table *table);
+t_bool	start_dinner(t_table *table);
+void	*clean_table(t_table **table);
 void	*dine(void	*philo_ptr);
-void	*watch(void *table_ptr);
+void	*reap(void *table_ptr);
 void	print_log(t_philo *philo, char *log_msg, char *color);
 void	print_final_msg(t_philo *philo, char *log_msg, char *color);
 

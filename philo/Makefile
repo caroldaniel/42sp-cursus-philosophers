@@ -6,7 +6,7 @@
 #    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 21:45:32 by cado-car          #+#    #+#              #
-#    Updated: 2023/03/20 22:21:07 by cado-car         ###   ########.fr        #
+#    Updated: 2023/03/23 12:33:06 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,12 @@ OBJ_PATH		= ./obj/
 SRC				= main.c\
 				check_args.c\
 				set_table.c\
+				start_dinner.c\
 				clean_table.c\
 				create_philo.c\
 				dine.c\
 				dine_fts.c\
-				watch.c\
+				reap.c\
 				print_log.c\
 				utils.c
 

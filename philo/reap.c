@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   watch.c                                            :+:      :+:    :+:   */
+/*   reap.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,7 @@
 static t_bool	are_all_done(t_args *args, t_philo **philos);
 static t_bool	is_any_dead(t_args *args, t_philo **philos);
 
-void	*watch(void *table_ptr)
+void	*reap(void *table_ptr)
 {
 	t_table	*table;
 

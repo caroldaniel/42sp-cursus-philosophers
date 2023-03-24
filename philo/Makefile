@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 21:45:32 by cado-car          #+#    #+#              #
-#    Updated: 2023/03/24 12:38:18 by cado-car         ###   ########.fr        #
+#    Updated: 2023/03/24 17:44:58 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			= philo
 
 #compilation
 CC 				= cc
-CF 				= -g -Wall -Wextra -Werror
+CF 				= -g -Wall -Wextra -Werror -pthread
 
 SRC_PATH 		= ./
 OBJ_PATH		= ./obj/
@@ -57,7 +57,7 @@ fclean:			clean
 				@printf "$(RE)Executable removed!$(RC)\n\n"
 
 leak:			all
-				valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) 4 510 200 100 5
+				valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) 4 410 200 200 5
 
 .PHONY:			all clean fclean re
 

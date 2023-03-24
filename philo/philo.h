@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 15:19:00 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 12:45:48 by cado-car         ###   ########.fr       */
+/*   Created: 2023/03/24 17:22:26 by cado-car          #+#    #+#             */
+/*   Updated: 2023/03/24 17:24:47 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,14 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# include "colors.h"
+# define ESC_BOLD_RED "\001\033[1;31m\002"
+# define ESC_BOLD_GREEN "\001\033[1;32m\002"
+# define ESC_BOLD_YELLOW "\001\033[1;33m\002"
+# define ESC_BOLD_BLUE "\001\033[1;34m\002"
+# define ESC_BOLD_PURPLE "\001\033[1;35m\002"
+# define ESC_BOLD_CYAN "\001\033[1;36m\002"
+# define ESC_BOLD_WHITE "\001\033[1;37m\002"
+# define ESC_WHITE "\001\033[0;37m\002"
 
 // Error Messages Macros
 # define ERR_ARGNUM "Philo Error: invalid number of arguments"

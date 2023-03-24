@@ -37,7 +37,7 @@ The project
 In this problem, a pre-determined number of philosophers eat together at the same table. Each philosopher has their own place at the table and there is only one fork available per philosopher. They will need to eat, sleep, think and start the process all over again… again and again.
 
 <p align="center">
-  <img src="http://some_place.com/image.png](https://user-images.githubusercontent.com/80178342/227601334-852baa9d-6748-4a44-9cf7-b3cc0f853061.png" />
+  <img src="https://user-images.githubusercontent.com/80178342/227601334-852baa9d-6748-4a44-9cf7-b3cc0f853061.png" />
 </p>
 
 The problem lies in the fact that in order to eat, a philosopher needs to grab - one at a time - two forks, one in each hand. Also, they must eat every few moments from the moment they sit by the table or from the moment they last ate (this is also pre-determined by the user). If not, they will die. 

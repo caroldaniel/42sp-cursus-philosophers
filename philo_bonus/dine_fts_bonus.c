@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:34:22 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 18:13:27 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:46:01 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static void	get_forks(t_philo *philo);
 
 void	ft_eat(t_philo *philo)
 {		
-	if (philo->meal_count == philo->args->nb_meals)
-	{		
-		print_log(philo, "has finished eating", ESC_BOLD_WHITE);
-		philo->is_done = TRUE;
-		return ;
-	}
 	get_forks(philo);
 	print_log(philo, "is eating", ESC_BOLD_GREEN);
 	philo->last_meal = gettimems();
@@ -29,6 +23,11 @@ void	ft_eat(t_philo *philo)
 	usleep(philo->args->time_eat * 1000);
 	sem_post(*(philo->forks));
 	sem_post(*(philo->forks));
+	if (philo->meal_count == philo->args->nb_meals)
+	{		
+		print_log(philo, "has finished eating", ESC_BOLD_WHITE);
+		philo->is_done = TRUE;
+	}
 }
 
 static void	get_forks(t_philo *philo)

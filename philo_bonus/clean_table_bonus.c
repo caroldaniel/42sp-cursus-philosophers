@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:50:41 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 18:05:49 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:06:27 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	*clean_table(t_table **table)
 		free((*table)->args.pid_array);
 		if ((*table)->forks)
 			close_semaphore((*table)->forks, FORKS);
-		free(*table);
 		destroy_philos(*table);
+		free(*table);
 	}
 	return (NULL);
 }

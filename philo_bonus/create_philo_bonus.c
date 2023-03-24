@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:22:18 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 19:07:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:09:49 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ t_bool	create_philo(int i, t_table *table)
 	table->philos[i]->id = i + 1;
 	table->philos[i]->pid = 0;
 	table->philos[i]->meal_count = 0;
-	table->philos[i]->last_meal = gettimems();
 	table->philos[i]->is_done = FALSE;
 	set_ptrs(table->philos[i], table);
 	set_fts(table->philos[i]);
+	table->philos[i]->last_meal = gettimems();
+	print_log(table->philos[i], "has started the simulation", ESC_BOLD_WHITE);
 	return (TRUE);
 }
 

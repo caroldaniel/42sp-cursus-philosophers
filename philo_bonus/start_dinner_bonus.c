@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:19:37 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 19:43:51 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:52:56 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_bool	start_philos(t_table *table)
 		{
 			dine(table->philos[i]);
 			clean_table(&table);
-			exit(0);
+			return (0);
 		}
 	}
 	return (TRUE);

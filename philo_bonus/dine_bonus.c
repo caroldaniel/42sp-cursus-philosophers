@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dine_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:32:23 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 12:34:29 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:19:08 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_bool	is_meal_over(t_philo *philo);
 void	*dine(t_philo *philo)
 {
 	pthread_t	watch_id;
-	int 		i;
-	
+	int			i;
+
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	if (philo->args->nb_philo == 1)
@@ -59,7 +59,7 @@ static void	*check_life(void *philo_ptr)
 		sem_post(philo->args->death);
 		print_log_death(philo);
 	}
-	return (NULL);	
+	return (NULL);
 }
 
 static t_bool	is_meal_over(t_philo *philo)

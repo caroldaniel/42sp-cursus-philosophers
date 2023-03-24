@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dine_fts_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:34:22 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 12:46:01 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 17:18:37 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_eat(t_philo *philo)
 
 static void	get_forks(t_philo *philo)
 {
-	int forks;
+	int	forks;
 
 	forks = 0;
 	while (forks < 2)

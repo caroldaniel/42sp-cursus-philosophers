@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:30:36 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:12:23 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:46:40 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static t_bool	get_a_fork(t_philo *philo, int type);
 
 void	ft_eat(t_philo *philo)
 {		
-	if (philo->meal_count == philo->args->nb_meals)
-	{		
-		print_log(philo, "has finished eating", ESC_BOLD_WHITE);
-		philo->is_done = TRUE;
-		return ;
-	}
 	if (!get_a_fork(philo, RIGHT))
 		return ;
 	if (!get_a_fork(philo, LEFT))
@@ -35,6 +29,11 @@ void	ft_eat(t_philo *philo)
 	usleep(philo->args->time_eat * 1000);
 	pthread_mutex_unlock(philo->fork[RIGHT]);
 	pthread_mutex_unlock(philo->fork[LEFT]);
+	if (philo->meal_count == philo->args->nb_meals)
+	{		
+		print_log(philo, "has finished eating", ESC_BOLD_WHITE);
+		philo->is_done = TRUE;
+	}
 }
 
 static t_bool	get_a_fork(t_philo *philo, int type)

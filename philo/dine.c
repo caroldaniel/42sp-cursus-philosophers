@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:19:09 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 22:48:05 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/24 12:29:35 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ void	*dine(void	*philo_ptr)
 	return (NULL);
 }
 
+static void	*dine_alone(t_philo *philo)
+{
+	pthread_mutex_lock(philo->fork[RIGHT]);
+	print_log(philo, "has taken a fork", ESC_BOLD_YELLOW);
+	print_log(philo, "can't eat alone", ESC_BOLD_RED);
+	pthread_mutex_unlock(philo->fork[RIGHT]);
+	return (NULL);
+}
+
 static t_bool	is_meal_over(t_philo *philo)
 {
 	if (philo->args->is_over)
@@ -38,13 +47,4 @@ static t_bool	is_meal_over(t_philo *philo)
 	if (philo->is_done)
 		return (TRUE);
 	return (FALSE);
-}
-
-static void	*dine_alone(t_philo *philo)
-{
-	pthread_mutex_lock(philo->fork[RIGHT]);
-	print_log(philo, "has taken a fork", ESC_BOLD_YELLOW);
-	pthread_mutex_unlock(philo->fork[RIGHT]);
-	print_log(philo, "can't eat alone", ESC_BOLD_RED);
-	return (NULL);
 }

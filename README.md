@@ -41,11 +41,16 @@ In this problem, a pre-determined number of philosophers eat together at the sam
 </p>
 
 The problem lies in the fact that in order to eat, a philosopher needs to grab - one at a time - two forks, one in each hand. Also, they must eat every few moments from the moment they sit by the table or from the moment they last ate (this is also pre-determined by the user). If not, they will die. 
-This all may sound simple enough, but believe me… it isn’t. 
+This all may sound simple enough, but believe me… it isn’t.
+
 How can we make each philosopher eat independently from everyone else?
-How can we prevent each philosopher from immediately grabbing a fork, and completely blocking everyone else from picking the second, eventually leading all to their imminent deaths? 
-How can we make sure that no two philosophers are eating simultaneously with the same fork? 
-How can we monitor whoever dies of finishes eating first, further preventing the simulation to continue? 
+
+How can we prevent each philosopher from immediately grabbing a fork, and completely blocking everyone else from picking the second, eventually leading all to their imminent deaths?
+
+How can we make sure that no two philosophers are eating simultaneously with the same fork?
+
+How can we monitor whoever dies of finishes eating first, further preventing the simulation to continue?
+
 This is the core concept of the philosopher’s project.
 
 ---

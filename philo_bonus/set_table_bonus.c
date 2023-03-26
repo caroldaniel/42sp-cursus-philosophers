@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:48:54 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/26 19:43:43 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 20:45:53 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ t_table	*set_table(int argc, char **argv)
 		return (NULL);
 	table = malloc(sizeof(t_table));
 	if (!table || !create_semaphore(&table->print_zone, PRINT, 1) || \
-		!create_semaphore(&table->death, DEATH, 1) || \
-		!create_semaphore(&table->done, DONE, 1))
+		!create_semaphore(&table->death, DEATH, 0) || \
+		!create_semaphore(&table->done, DONE, 0))
 		return (NULL);
-	sem_wait(table->death);
-	sem_wait(table->done);
 	if (!get_args(argc, argv, table) || !get_forks(table) || !get_philos(table))
 		return (clean_table(&table));
 	start_pid_array(table);

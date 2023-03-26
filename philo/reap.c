@@ -12,54 +12,73 @@
 
 #include "philo.h"
 
-static t_bool	are_all_done(t_args *args, t_philo **philos);
-static t_bool	is_any_dead(t_args *args, t_philo **philos);
+static t_bool	are_all_done(t_table *table);
+static t_bool	is_any_dead(t_table *table);
 
 void	*reap(void *table_ptr)
 {
 	t_table	*table;
+	t_bool	is_over;
 
 	table = (t_table *)table_ptr;
-	if (table->args.is_over)
+	pthread_mutex_lock(&table->is_over_lock);
+	is_over = table->is_over;
+	pthread_mutex_unlock(&table->is_over_lock);
+	if (is_over)
 		return (NULL);
-	while (!are_all_done(&table->args, table->philos))
+	while (!are_all_done(table))
 	{
-		if (is_any_dead(&table->args, table->philos))
+		if (is_any_dead(table))
 			return (NULL);
 		usleep(1000);
 	}
 	return (NULL);
 }
 
-static t_bool	are_all_done(t_args *args, t_philo **philos)
+static t_bool	are_all_done(t_table *table)
 {
-	int	i;
+	int		i;
+	t_bool	is_done;
 
 	i = -1;
-	if (args->nb_meals == -1)
+	if (table->args.nb_meals == -1)
 		return (FALSE);
-	while (++i < args->nb_philo)
-		if (!philos[i]->is_done)
+	while (++i < table->args.nb_philo)
+	{
+		pthread_mutex_lock(&table->philos[i]->is_done_lock);
+		is_done = table->philos[i]->is_done;
+		pthread_mutex_unlock(&table->philos[i]->is_done_lock);
+		if (!is_done)
 			return (FALSE);
-	args->is_over = TRUE;
-	print_final_msg(philos[0], FINAL_FULL, ESC_BOLD_GREEN);
+	}
+	pthread_mutex_lock(&table->is_over_lock);
+	table->is_over = TRUE;
+	pthread_mutex_unlock(&table->is_over_lock);
+	print_final_full(&table->print_zone);
 	return (TRUE);
 }
 
-static t_bool	is_any_dead(t_args *args, t_philo **philos)
+static t_bool	is_any_dead(t_table *table)
 {
 	int		i;
 	long	since_last_meal;
+	t_bool	is_done;
 
 	i = -1;
-	while (++i < args->nb_philo)
+	while (++i < table->args.nb_philo)
 	{
-		since_last_meal = gettimems() - philos[i]->last_meal;
-		if (!philos[i]->is_done && since_last_meal >= args->time_die)
+		pthread_mutex_lock(&table->philos[i]->last_meal_lock);
+		pthread_mutex_lock(&table->philos[i]->is_done_lock);
+		since_last_meal = gettimems() - table->philos[i]->last_meal;
+		is_done = table->philos[i]->is_done;
+		pthread_mutex_unlock(&table->philos[i]->last_meal_lock);
+		pthread_mutex_unlock(&table->philos[i]->is_done_lock);
+		if (!is_done && since_last_meal >= table->args.time_die)
 		{
-			philos[i]->args->is_over = TRUE;
-			print_log(philos[i], "has died", ESC_BOLD_RED);
-			print_final_msg(philos[i], FINAL_DEAD, ESC_BOLD_RED);
+			pthread_mutex_lock(&table->is_over_lock);
+			table->is_over = TRUE;
+			pthread_mutex_unlock(&table->is_over_lock);
+			print_final_death(table->philos[i]);
 			return (TRUE);
 		}
 	}

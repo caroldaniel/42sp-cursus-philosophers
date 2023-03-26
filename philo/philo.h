@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 17:22:26 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 17:24:47 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:54:21 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_args
 	long			time_eat;
 	long			time_sleep;
 	int				nb_meals;
-	t_bool			is_over;
 }	t_args;
 
 // Structure to represent a single philosopher
@@ -71,10 +70,14 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	int				meal_count;
 	long			last_meal;
+	pthread_mutex_t	last_meal_lock;
 	t_bool			is_done;
-	t_args			*args;
-	pthread_mutex_t	*fork[2];
+	pthread_mutex_t	is_done_lock;
+	t_args			args;
 	pthread_mutex_t	*print_zone;
+	pthread_mutex_t	*fork[2];
+	t_bool			*is_over;
+	pthread_mutex_t	*is_over_lock;
 	void			(*ft[3])(struct s_philo *);
 }	t_philo;
 
@@ -82,6 +85,8 @@ typedef struct s_philo
 typedef struct s_table
 {
 	pthread_mutex_t	print_zone;
+	t_bool			is_over;
+	pthread_mutex_t	is_over_lock;
 	t_args			args;
 	pthread_mutex_t	*forks;
 	t_philo			**philos;
@@ -97,7 +102,8 @@ void	*clean_table(t_table **table);
 void	*dine(void	*philo_ptr);
 void	*reap(void *table_ptr);
 void	print_log(t_philo *philo, char *log_msg, char *color);
-void	print_final_msg(t_philo *philo, char *log_msg, char *color);
+void	print_final_death(t_philo *philo);
+void	print_final_full(pthread_mutex_t *print_zone);
 
 // Function pointer array
 void	ft_eat(t_philo *philo);

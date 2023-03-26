@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:50:41 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/20 20:30:21 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 12:49:40 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	*clean_table(t_table **table)
 	if (*table)
 	{
 		pthread_mutex_destroy(&(*table)->print_zone);
+		pthread_mutex_destroy(&(*table)->is_over_lock);
 		if ((*table)->forks)
 			destroy_forks(*table);
 		if ((*table)->philos)
@@ -45,6 +46,9 @@ static void	destroy_philos(t_table *table)
 
 	i = -1;
 	while (++i < table->args.nb_philo)
+	{
+		pthread_mutex_destroy(&table->philos[i]->is_done_lock);
 		free(table->philos[i]);
+	}
 	free(table->philos);
 }

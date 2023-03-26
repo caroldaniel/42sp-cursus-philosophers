@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 09:19:09 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 12:29:35 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 13:13:44 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*dine(void	*philo_ptr)
 	philo = (t_philo *)philo_ptr;
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	if (philo->args->nb_philo == 1)
+	if (philo->args.nb_philo == 1)
 		return (dine_alone(philo));
 	i = 0;
 	while (!is_meal_over(philo))
@@ -42,9 +42,18 @@ static void	*dine_alone(t_philo *philo)
 
 static t_bool	is_meal_over(t_philo *philo)
 {
-	if (philo->args->is_over)
+	t_bool	is_over;
+	t_bool	is_done;
+
+	pthread_mutex_lock(philo->is_over_lock);
+	is_over = *philo->is_over;
+	pthread_mutex_unlock(philo->is_over_lock);
+	if (is_over)
 		return (TRUE);
-	if (philo->is_done)
+	pthread_mutex_lock(&philo->is_done_lock);
+	is_done = philo->is_done;
+	pthread_mutex_unlock(&philo->is_done_lock);
+	if (is_done)
 		return (TRUE);
 	return (FALSE);
 }

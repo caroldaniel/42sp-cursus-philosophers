@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 16:48:54 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/23 09:50:17 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 13:09:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ t_table	*set_table(int argc, char **argv)
 	if (!table)
 		return (NULL);
 	pthread_mutex_init(&table->print_zone, NULL);
+	pthread_mutex_init(&table->is_over_lock, NULL);
 	if (!get_args(argc, argv, table) || !get_forks(table) || !get_philos(table))
 		return (clean_table(&table));
+	table->is_over = FALSE;
+	if (table->args.nb_philo == 1)
+		table->is_over = TRUE;
 	return (table);
 }
 
@@ -41,9 +45,6 @@ static t_bool	get_args(int argc, char **argv, t_table *table)
 	table->args.nb_meals = -1;
 	if (argc == 6)
 		table->args.nb_meals = ft_atoi(argv[5]);
-	table->args.is_over = FALSE;
-	if (table->args.nb_philo == 1)
-		table->args.is_over = TRUE;
 	return (TRUE);
 }
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+         #
+#    By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/19 21:45:32 by cado-car          #+#    #+#              #
-#    Updated: 2023/03/24 17:45:20 by cado-car         ###   ########.fr        #
+#    Updated: 2023/03/26 19:39:05 by cado-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,9 @@ fclean:			clean
 
 leak:			all
 				valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) 4 410 200 200 5
+
+thread:			all
+				valgrind --tool=helgrind --history-level=approx ./$(NAME) 4 410 200 200 5
 
 .PHONY:			all clean fclean re
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cado-car <cado-car@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:45:38 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 17:25:01 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:11:27 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@
 # define FINAL_FULL	"They all ate so much they can't barely think now..."
 
 // SEMAPHORE NAMES
-# define PRINT	"/print"
-# define FORKS	"/forks"
-# define DEATH	"/death"
+# define PRINT		"/print"
+# define FORKS		"/forks"
+# define DEATH		"/death"
+# define DONE		"/done"
+# define PID_LOCK	"/done"
 
 // Boolean Type Definition
 typedef enum e_bool
@@ -66,8 +68,6 @@ typedef struct s_args
 	long			time_eat;
 	long			time_sleep;
 	int				nb_meals;
-	sem_t			*death;
-	int				*pid_array;
 }	t_args;
 
 // Structure to represent a single philosopher
@@ -77,10 +77,11 @@ typedef struct s_philo
 	int				pid;
 	int				meal_count;
 	long			last_meal;
-	t_bool			is_done;
-	t_args			*args;
-	sem_t			**forks;
+	t_args			args;
 	sem_t			**print_zone;
+	sem_t			**forks;
+	sem_t			**death;
+	sem_t			**done;
 	void			(*ft[3])(struct s_philo *);
 
 }	t_philo;
@@ -89,9 +90,13 @@ typedef struct s_philo
 typedef struct s_table
 {
 	sem_t			*print_zone;
-	t_args			args;
+	sem_t			*death;
+	sem_t			*done;
 	sem_t			*forks;
+	t_args			args;
 	t_philo			**philos;
+	int				*pid_array;
+	sem_t			*pid_array_lock;
 	pthread_t		reaper_id;
 }	t_table;
 
@@ -104,8 +109,8 @@ void	*clean_table(t_table **table);
 void	*dine(t_philo *philo);
 void	*reap(void *table_ptr);
 void	print_log(t_philo *philo, char *log_msg, char *color);
-void	print_log_death(t_philo *philo);
-void	print_final_msg(t_philo *philo, char *log_msg, char *color);
+void	print_final_death(t_philo *philo);
+void	print_final_full(t_philo *philo);
 
 // Function pointer array
 void	ft_eat(t_philo *philo);

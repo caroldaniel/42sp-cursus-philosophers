@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:50:41 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 12:06:27 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:12:16 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,16 @@ void	*clean_table(t_table **table)
 	{
 		if ((*table)->print_zone)
 			close_semaphore((*table)->print_zone, PRINT);
-		if ((*table)->args.death)
-			close_semaphore((*table)->args.death, DEATH);
-		free((*table)->args.pid_array);
+		if ((*table)->death)
+			close_semaphore((*table)->death, DEATH);
+		if ((*table)->done)
+			close_semaphore((*table)->done, DONE);
 		if ((*table)->forks)
 			close_semaphore((*table)->forks, FORKS);
 		destroy_philos(*table);
+		free((*table)->pid_array);
+		if ((*table)->pid_array_lock)
+			close_semaphore((*table)->pid_array_lock, PID_LOCK);
 		free(*table);
 	}
 	return (NULL);

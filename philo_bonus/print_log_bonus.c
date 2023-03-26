@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 10:17:05 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/24 12:12:38 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 19:41:05 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,27 @@ void	print_log(t_philo *philo, char *log_msg, char *color)
 	long	timestmp;
 
 	sem_wait(*(philo->print_zone));
-	timestmp = gettimems() - philo->args->start_time;
+	timestmp = gettimems() - philo->args.start_time;
 	printf("%s%8ld %2d %s%s\n", color, timestmp, philo->id, log_msg, ESC_WHITE);
 	sem_post(*(philo->print_zone));
 }
 
-void	print_log_death(t_philo *philo)
+void	print_final_death(t_philo *philo)
 {
 	long	timestmp;
 
 	sem_wait(*(philo->print_zone));
-	timestmp = gettimems() - philo->args->start_time;
-	printf("%s%8ld %2d has died\n", ESC_BOLD_RED, timestmp, philo->id);
+	timestmp = gettimems() - philo->args.start_time;
+	printf("%s%8ld %2d has died%s\n", ESC_BOLD_RED, timestmp, philo->id, \
+		ESC_WHITE);
 	printf("\n%s%s%s\n\n", ESC_BOLD_RED, FINAL_DEAD, ESC_WHITE);
+	usleep(10000);
+	sem_post(*(philo->print_zone));
 }
 
-void	print_final_msg(t_philo *philo, char *log_msg, char *color)
+void	print_final_full(t_philo *philo)
 {
 	sem_wait(*(philo->print_zone));
-	printf("\n%s%s%s\n\n", color, log_msg, ESC_WHITE);
+	printf("\n%s%s%s\n\n", ESC_BOLD_GREEN, FINAL_FULL, ESC_WHITE);
 	sem_post(*(philo->print_zone));
 }

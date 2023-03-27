@@ -6,7 +6,7 @@
 /*   By: cado-car <cado-car@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:34:22 by cado-car          #+#    #+#             */
-/*   Updated: 2023/03/26 20:05:39 by cado-car         ###   ########.fr       */
+/*   Updated: 2023/03/26 21:07:21 by cado-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static t_bool	check_life(t_philo	*philo)
 	since_last_meal = gettimems() - philo->last_meal;
 	if (since_last_meal >= philo->args.time_die)
 	{
-		print_log(philo, "has died", ESC_BOLD_RED);
 		print_final_death(philo);
 		sem_post(*(philo->death));
 		usleep(1000);

@@ -88,7 +88,7 @@ How can we prevent each philosopher from immediately grabbing a fork, and comple
 
 How can we make sure that no two philosophers are eating simultaneously with the same fork?
 
-How can we monitor whoever dies of finishes eating first, further preventing the simulation to continue?
+How can we monitor whoever dies of finishes eating first, further preventing the simulation from continue?
 
 This is the core concept of the philosopher’s project.
 

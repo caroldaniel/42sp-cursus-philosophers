@@ -15,6 +15,9 @@
 	Final score
 </h2>
 
+<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/5caf7ef929330f9684510999d248c40a474d8200/philosophers_grade.png alt="cado-car's 42Project Score"/>
+<h4>Completed + Bonus</h4>
+<img src=https://github.com/caroldaniel/caroldaniel-utils/blob/5caf7ef929330f9684510999d248c40a474d8200/philosophersm.png alt="cado-car's 42Project Badge"/>
 </div>
 
 ---

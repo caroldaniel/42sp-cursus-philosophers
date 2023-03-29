@@ -9,7 +9,9 @@
 <p align=center>
 	In computer science, the dining philosopher’s problem is a classic approach to illustrate what concurrency and race conditions are, and further highlighting the necessity to understand synchronization issues and possible techniques for resolving them. It was simple yet complex little project to work on, that managed to gather everything we’ve seen so far on the 42 syllabus – pointers, processes, signals, complex types and so much more. We’ve never, indeed, thought philosophy could be so deadly – nor so fun.
 </p>
+
 ---
+
 <div align=center>
 <h2>
 	Final score
